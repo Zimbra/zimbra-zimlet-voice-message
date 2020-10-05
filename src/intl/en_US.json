@@ -1,0 +1,11 @@
+{
+	"voice-message-zimlet": {
+		"title":"Voice message",
+		"description": "Click start button to start recording your message.",
+		"startBtn": "Start recording voice message",
+		"stopBtn": "Done",
+		"attachmentName": "voice-message",
+		"mailSubject": "See attached voice message"
+      }
+}
+
