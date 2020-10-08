@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "voice-message",
+  "name": "zimbra-zimlet-voice-message",
   "version": "1.0.0",
   "license": "MIT",
   "description": "TBD",
