@@ -11,7 +11,9 @@ import { withText } from 'preact-i18n';
     startBtn: 'voice-message-zimlet.startBtn',
     stopBtn: 'voice-message-zimlet.stopBtn',
     attachmentName: 'voice-message-zimlet.attachmentName',
-    mailSubject: 'voice-message-zimlet.mailSubject'
+    mailSubject: 'voice-message-zimlet.mailSubject',
+    noAudio: 'voice-message-zimlet.noAudio',
+    errorNotSupported: 'voice-message-zimlet.errorNotSupported'
 })
 
 export default class MoreMenu extends Component {
@@ -90,7 +92,7 @@ export default class MoreMenu extends Component {
                         let file = new window.parent.File([blob], (_this.props.attachmentName + " " + Date.now() + ".webm"), { type: 'audio/webm' });
                         editor.addAttachments([file]);
                     }
-                    else { _this.alert("Unsupported browser") }
+                    else { _this.alert(_this.props.errorNotSupported) }
                     console.log(editor);
                     if (editor.getSubject().length < 1) {
                         editor.setSubject(_this.props.mailSubject);
@@ -102,6 +104,9 @@ export default class MoreMenu extends Component {
             this.recorder.start();
             parent.document.getElementById('voice-message-stopBtn').style.visibility = "visible";
             parent.document.getElementById('voice-message-startBtn').style.visibility = "hidden";
+        }).catch(function (err) {
+            console.log(err);
+            _this.alert(_this.props.noAudio);
         });
     }
 
@@ -110,9 +115,14 @@ export default class MoreMenu extends Component {
     }
 
     render() {
-        return (<ActionMenuItem onClick={this.onAttachFilesFromService} >
-            { this.props.title}
-        </ActionMenuItem>
-        );
+        try {
+            if (typeof (MediaRecorder) === "function") {
+                return (<ActionMenuItem onClick={this.onAttachFilesFromService} >
+                    { this.props.title}
+                </ActionMenuItem>
+                )
+            };
+        } catch (err) { return (<br style="display:none" />) }
+
     }
 }

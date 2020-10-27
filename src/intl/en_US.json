@@ -5,7 +5,9 @@
 		"startBtn": "Start recording voice message",
 		"stopBtn": "Done",
 		"attachmentName": "voice-message",
-		"mailSubject": "See attached voice message"
+		"mailSubject": "See attached voice message",
+		"errorNotSupported": "This browser is not supported",
+		"noAudio": "Audio recording device is not available"
       }
 }
 
