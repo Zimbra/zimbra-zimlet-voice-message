@@ -1,0 +1,13 @@
+{
+	"voice-message-zimlet": {
+		"title":"Message Vocal",
+		"description": "Cliquer sur 'Enregistrement vocal' pour enregistrer un message.",
+		"startBtn": "Enregistrement vocal",
+		"stopBtn": "Stop",
+		"attachmentName": "message-vocal",
+		"mailSubject": "Voici un message vocal",
+		"errorNotSupported": "Ce navigateur n'est pas supporté",
+		"noAudio": "Le micro n'est pas disponible"
+      }
+}
+
