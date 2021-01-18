@@ -56,8 +56,8 @@ export default class MoreMenu extends Component {
                         {this.props.description}
                     </div>
                     <footer class="zimbra-client_modal-dialog_footer" id="nextcloudDialogButtons">
-                        <button type="button" onClick={e => this.handleClick(e, editor)} id="voice-message-startBtn" class="blocks_button blocks_button_regular">{this.props.startBtn}</button>
-                        <button type="button" onClick={e => this.handleClickStop(e, editor)} id="voice-message-stopBtn" style="visibility:hidden" class="blocks_button blocks_button_regular">{this.props.stopBtn}</button>
+                        <button type="button" onClick={e => this.handleClick(e, editor)} id="voice-message-startBtn" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.startBtn}</button>
+                        <button type="button" onClick={e => this.handleClickStop(e, editor)} id="voice-message-stopBtn" style="visibility:hidden" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.stopBtn}</button>
                     </footer>
                 </div>
             </ModalDialog>
