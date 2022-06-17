@@ -1,0 +1,12 @@
+{
+	"voice-message-zimlet": {
+		"title":"語音訊息",
+		"description": "按下 START 開始錄製您的語音訊息。.",
+		"startBtn": "開始錄製語音訊息",
+		"stopBtn": "完成",
+		"attachmentName": "voice-message",
+		"mailSubject": "檢視附加的語音訊息",
+		"errorNotSupported": "此瀏覽器沒有支援",
+		"noAudio": "錄音裝置無法使用"
+      }
+}
