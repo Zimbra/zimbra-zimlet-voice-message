@@ -1,6 +1,5 @@
 import { createElement, Component } from 'preact';
 import { withIntl } from '../../enhancers';
-import style from './style';
 import { ModalDialog, ActionMenuItem, NakedButton } from '@zimbra-client/components';
 import { withText } from 'preact-i18n';
 
@@ -43,24 +42,15 @@ export default class MoreMenu extends Component {
         const { title } = this.props;
         this.modal = (
             <ModalDialog
-                class={style.modalDialog}
-                contentClass={style.modalContent}
-                innerClass={style.inner}
                 onClose={this.handleClose}
+                onAction={this.handleClose}
+                title={this.props.title}
                 cancelButton={false}
-                header={false}
-                footer={false}
+
             >
-                <div class="zimbra-client_modal-dialog_inner"><header class="zimbra-client_modal-dialog_header"><h2>{title}</h2><button onClick={this.handleClose} aria-label="Close" class="zimbra-client_close-button_close zimbra-client_modal-dialog_actionButton"><span role="img" class="zimbra-icon zimbra-icon-close blocks_icon_md"></span></button></header>
-                    <div class="zimbra-client_modal-dialog_content zimbra-client_language-modal_languageModalContent">
-                        {this.props.description}
-                    </div>
-                    <footer class="zimbra-client_modal-dialog_footer" id="nextcloudDialogButtons">
-                        <button type="button" onClick={e => this.handleClick(e, editor)} id="voice-message-startBtn" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.startBtn}</button>
-                        <button type="button" onClick={e => this.handleClickStop(e, editor)} id="voice-message-stopBtn" style="visibility:hidden" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.stopBtn}</button>
-                    </footer>
-                </div>
-            </ModalDialog>
+                <p>{this.props.description}<button type="button" onClick={e => this.handleClick(e, editor)} id="voice-message-startBtn" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.startBtn}</button>
+                    <button type="button" onClick={e => this.handleClickStop(e, editor)} id="voice-message-stopBtn" style="visibility:hidden" class="blocks_button_button blocks_button_primary blocks_button_regular zimbra-client_sidebar-primary-button_button">{this.props.stopBtn}</button>
+                </p></ModalDialog>
         );
 
         const { dispatch } = this.zimletContext.store;
@@ -118,7 +108,7 @@ export default class MoreMenu extends Component {
         try {
             if (typeof (MediaRecorder) === "function") {
                 return (<ActionMenuItem onClick={this.onAttachFilesFromService} >
-                    { this.props.title}
+                    {this.props.title}
                 </ActionMenuItem>
                 )
             };
