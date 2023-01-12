@@ -6,11 +6,11 @@ if [ $? -ne 0 ]; then
    echo "*** Mailbox is not running... ***"
    echo "*** Follow the steps below as zimbra user ignore if installing through install.sh .. ***"
    echo "*** Install the Zimbra-Zimlet-Voice-Message  zimlet. ***"
-   echo "*** zmzimletctl deploy /opt/zimbra/zimlets-network/zimbra-zimlet-voice-message.zip ***"
+   echo "*** zmzimletctl -l deploy /opt/zimbra/zimlets-network/zimbra-zimlet-voice-message.zip ***"
    echo "*** zmprov fc zimlet ***"
 else
    echo "*** Deploying Zimbra-Voice-Message  zimlet ***"
-   su - zimbra -c  "zmzimletctl deploy /opt/zimbra/zimlets-network/zimbra-zimlet-voice-message.zip"
+   su - zimbra -c  "zmzimletctl -l deploy /opt/zimbra/zimlets-network/zimbra-zimlet-voice-message.zip"
    su - zimbra -c  "zmprov fc zimlet"
 fi
 echo "*** Zimbra-Zimlet-Voice-Message  Installation Completed. ***"
