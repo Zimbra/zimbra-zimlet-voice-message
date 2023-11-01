@@ -25,7 +25,8 @@
     "extends": "eslint-config-synacor"
   },
   "devDependencies": {
-    "@zimbra/zimlet-cli": "^14.3.0"
+    "@zimbra/zimlet-cli": "^14.3.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0"
   },
   "dependencies": {}
 }
