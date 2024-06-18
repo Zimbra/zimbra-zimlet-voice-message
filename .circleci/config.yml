@@ -274,6 +274,12 @@ workflows:
           context:
             - docker-dev-registry
 
+      - build-c9:
+          requires:
+            - zip
+          context:
+            - docker-dev-registry
+
       - build-c8:
           requires:
             - zip
