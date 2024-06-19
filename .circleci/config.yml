@@ -2,7 +2,6 @@ version: 2.1
 
 ############################################################################
 orbs:
-  aws-s3: circleci/aws-s3@3.0.0
   jq: circleci/jq@2.2.0
 
 ############################################################################
@@ -196,16 +195,14 @@ jobs:
       - image: "cimg/python:2.7"
     steps:
       - *attach-workspace
-
-      - aws-s3/sync:
-          from: "~/repo/build/dist/"
-          to: "s3://files.zimbra.com/dev-releases/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM/archives/"
-          aws-access-key-id: RELEASE_AWS_ACCESS_KEY_ID
-          aws-secret-access-key: RELEASE_AWS_SECRET_ACCESS_KEY
-          aws-region: RELEASE_AWS_DEFAULT_REGION
-          arguments: --acl public-read
-
-
+      - run:
+          name: Create a zip file for artifacts and upload them to the OCI bucket
+          command: |
+            cd ~/repo/build/dist/
+            zip -r $CIRCLE_PROJECT_REPONAME.zip .
+            ZIP_FILE_PATH="$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM/archives/$CIRCLE_PROJECT_REPONAME.zip"
+            curl -X PUT "$OCI_PAR_URL$ZIP_FILE_PATH" -T $CIRCLE_PROJECT_REPONAME.zip
+            echo "artifacts uploaded to $ZIP_FILE_PATH"
 ################################################
 
 ################# Executors ####################
@@ -274,12 +271,6 @@ workflows:
           context:
             - docker-dev-registry
 
-      - build-c9:
-          requires:
-            - zip
-          context:
-            - docker-dev-registry
-
       - build-c8:
           requires:
             - zip
@@ -305,7 +296,7 @@ workflows:
 
       - deploy-s3:
           context:
-            - aws
+            - oracle
           requires:
             - deploy-s3-approval
 
