@@ -243,43 +243,10 @@ workflows:
           context:
             - docker-dev-registry
             
-      - build-u22:
-          requires:
-            - zip
-          context:
-            - docker-dev-registry
-
-      - build-u20:
-          requires:
-            - zip
-
-      - build-u18:
-          requires:
-            - zip
-
-      - build-u16:
-          requires:
-            - zip
-
-      - build-c8:
-          requires:
-            - zip
-
-      - build-c7:
-          requires:
-            - zip
-
       - deploy-s3-approval:
           type: approval
           requires:
             - build-u24
-            - build-u22
-            - build-u20
-            - build-u18
-            - build-u16
-            - build-c9
-            - build-c8
-            - build-c7
 
       - deploy-s3:
           context:
